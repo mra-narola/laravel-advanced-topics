@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExceptionHandlingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('exception-code', [ExceptionHandlingController::class, 'index'])->name('exception-handler.index');
