@@ -1,64 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <h1 align="center">...::: 🎁Extra Bonus🎁 :::...</h1>
 </p>
 
-## About Laravel
+## Coding Standerds
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+being a developer, we have to make sure that, we write a code clean, reusable and optimized.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+here some best practice example given in <a href="https://github.com/alexeymezenin/laravel-best-practices/#contents">Laravel Best Practice</a>. about what you need to take care about while you are developling in the Laravel or any other frameworks.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Laravel Debug Bar
+Laravel have one package called <a href="https://packagist.org/packages/barryvdh/laravel-debugbar">Laravel Debug Bar</a>
+it will helps you in ...
+1. to debug the code
+2. how much memory it consume and query execution time
+3. how many SQL query execute
 
-## Learning Laravel
+and many more...
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Spatie Packages
+Spatie provides many packages that helps to develop feature easly.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. <a href="https://spatie.be/docs/laravel-permission/v5/introduction">Laravel Permission</a>
+Laravel Permission provides, role-permission funtionality where we can implement easly.
 
-## Laravel Sponsors
+Once installed you can do stuff like this:
+```php
+// Adding permissions to a user
+$user->givePermissionTo('edit articles');
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+// Adding permissions via a role
+$user->assignRole('writer');
 
-### Premium Partners
+$role->givePermissionTo('edit articles');
+```
+Assign permission to role
+```php
+$role->permissions()->sync($permissions);
+```
+also, you can protect the route for role
+```php
+// in routes/web.php
+Route::group(['middleware' => 'role:writer'], function() {
+    // route for writer
+});
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+2. <a href="https://spatie.be/docs/laravel-activitylog/v4/introduction">Laravel Activity Log</a>
 
-## Contributing
+Laravel Activity Log provides, activity log that will sync with Database and add logs in the `activity_logs` table.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Here's a litte demo of how you can use it:
+```php
+activity()->log('Look mum, I logged something');
+```
 
-## Code of Conduct
+## Get all timezone
+Sometimes, in project we need to play with the timezones. for listing all the timezone here is the best and eaziest way to do...
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```php
+$time_zone_lists = \DateTimeZone::listIdentifiers(\DateTimeZone::ALL);
+```
+as a output you will get all the timezones list in array.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
